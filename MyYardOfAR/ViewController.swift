@@ -23,11 +23,49 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         
+        sceneView.autoenablesDefaultLighting = true
+        
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        let scene = SCNScene(named: "art.scnassets/MyYard.scn")!
         
         // Set the scene to the view
         sceneView.scene = scene
+        
+        tree()
+    }
+    
+    func tree() {
+        let node = SCNNode()
+        node.position = SCNVector3(0, 0, -3)
+        sceneView.scene.rootNode.addChildNode(node)
+        
+        let cylinderNode = SCNNode()
+        cylinderNode.position = SCNVector3(0.7, -0.1, -0.1)
+        let cylinder = SCNBox(width: 0.14, height: 0.4, length: 0.4, chamferRadius: 0.3)
+        cylinder.firstMaterial?.diffuse.contents = UIColor.brown
+        cylinderNode.geometry = cylinder
+        node.addChildNode(cylinderNode)
+        
+        let sphereNode = SCNNode()
+        sphereNode.position = SCNVector3(0.7, 0.2, 0)
+        let sphere = SCNBox(width: 0.4, height: 0.4, length: 0.4, chamferRadius: 1)
+        sphere.firstMaterial?.diffuse.contents = UIColor.green
+        sphereNode.geometry = sphere
+        node.addChildNode(sphereNode)
+        
+        let cylinderNode2 = SCNNode()
+        cylinderNode2.position = SCNVector3(-0.6, -0.1, -0.1)
+        let cylinder2 = SCNBox(width: 0.1, height: 0.3, length: 0.3, chamferRadius: 0.3)
+        cylinder2.firstMaterial?.diffuse.contents = UIColor.brown
+        cylinderNode2.geometry = cylinder2
+        node.addChildNode(cylinderNode2)
+        
+        let sphereNode2 = SCNNode()
+        sphereNode2.position = SCNVector3(-0.6, 0.1, 0)
+        let sphere2 = SCNBox(width: 0.3, height: 0.3, length: 0.3, chamferRadius: 1)
+        sphere2.firstMaterial?.diffuse.contents = UIColor.green
+        sphereNode2.geometry = sphere2
+        node.addChildNode(sphereNode2)
     }
     
     override func viewWillAppear(_ animated: Bool) {
